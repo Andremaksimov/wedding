@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Конструктор свадебных приглашений</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="builder">
+    <section class="panel">
+      <div class="panel-head">
+        <span class="eyebrow">WEDDING INVITATION</span>
+        <h1>Конструктор приглашения</h1>
+        <p>Введите имя гостя и получите персональную ссылку.</p>
+      </div>
+
+      <label for="guestName">ФИО гостя</label>
+      <input id="guestName" type="text" placeholder="Например, Иванов Иван Иванович" autocomplete="off">
+
+      <label for="weddingDate">Дата свадьбы</label>
+      <input id="weddingDate" type="date" value="2026-09-05">
+
+      <label for="venue">Место свадьбы</label>
+      <input id="venue" type="text" value="Чаша, Золотой зал">
+
+      <label for="meetingPlace">Место встречи</label>
+      <input id="meetingPlace" type="text" value="У входа в Золотой зал">
+
+      <label for="meetingTime">Время встречи</label>
+      <input id="meetingTime" type="time" value="16:00">
+
+      <button id="generateBtn">Создать персональную ссылку</button>
+
+      <div id="result" class="result hidden">
+        <div class="result-title">Персональная ссылка</div>
+        <div class="link-row">
+          <input id="generatedLink" readonly>
+          <button id="copyBtn" class="secondary">Копировать</button>
+        </div>
+        <p id="resultText"></p>
+      </div>
+    </section>
+
+    <section class="preview-wrap">
+      <div class="preview-label">Предпросмотр</div>
+      <article class="card">
+        <div class="card-top">МЫ ЖЕНИМСЯ</div>
+        <div class="rings">○</div>
+        <div class="invite">ДОРОГОЙ ГОСТЬ</div>
+        <h3 class="couple">АНДРЕЙ &amp; ВЕРОНИКА</h3>
+        <h2 id="previewName">Ваше имя</h2>
+        <div class="divider"></div>
+        <p class="intro">Мы будем счастливы разделить с вами<br>этот особенный день.</p>
+
+        <div class="details">
+          <div>
+            <span>ДАТА</span>
+            <strong id="previewDate">05.09.2026</strong>
+          </div>
+          <div>
+            <span>МЕСТО</span>
+            <strong id="previewVenue">Чаша, Золотой зал</strong>
+          </div>
+          <div>
+            <span>МЕСТО ВСТРЕЧИ</span>
+            <strong id="previewMeetingPlace">У входа в Золотой зал</strong>
+          </div>
+          <div>
+            <span>ВРЕМЯ ВСТРЕЧИ</span>
+            <strong id="previewMeetingTime">16:00</strong>
+          </div>
+        </div>
+
+        <div class="countdown">
+          <span>ДО НАШЕГО ДНЯ</span>
+          <div class="timer">
+            <div><b id="days">—</b><small>дней</small></div>
+            <div><b id="hours">—</b><small>часов</small></div>
+            <div><b id="minutes">—</b><small>минут</small></div>
+            <div><b id="seconds">—</b><small>секунд</small></div>
+          </div>
+          <p id="countdownStatus"></p>
+        </div>
+
+        <div class="card-bottom">С ЛЮБОВЬЮ · АНДРЕЙ &amp; ♥</div>
+      </article>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
