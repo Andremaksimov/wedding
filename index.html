@@ -7,10 +7,22 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="bg-decor" aria-hidden="true">
+    <span class="float flower f1">🌸</span>
+    <span class="float flower f2">🌺</span>
+    <span class="float flower f3">🌷</span>
+    <span class="float flower f4">🌼</span>
+    <span class="float cat c1">🐱</span>
+    <span class="float cat c2">🐈</span>
+    <span class="float flower f5">🌸</span>
+    <span class="float cat c3">🐾</span>
+    <span class="float flower f6">💮</span>
+  </div>
+
   <main class="builder">
     <section class="panel">
       <div class="panel-head">
-        <span class="eyebrow">WEDDING INVITATION</span>
+        <span class="eyebrow">WEDDING INVITATION 🌸</span>
         <h1>Конструктор приглашения</h1>
         <p>Введите имя гостя и получите персональную ссылку.</p>
       </div>
@@ -27,10 +39,35 @@
       <label for="meetingPlace">Место встречи</label>
       <input id="meetingPlace" type="text" value="У входа в Золотой зал">
 
-      <label for="meetingTime">Время встречи</label>
+      <label for="timeType">Тип времени</label>
+      <select id="timeType">
+        <option value="registration">Время регистрации</option>
+        <option value="banquet">Начало банкета</option>
+      </select>
+
+      <label for="meetingTime">Время</label>
       <input id="meetingTime" type="time" value="16:00">
 
-      <button id="generateBtn">Создать персональную ссылку</button>
+      <label class="checkbox-label">
+        <input id="enableSecondMeeting" type="checkbox">
+        <span>Добавить второе место и время</span>
+      </label>
+
+      <div id="secondMeetingFields" class="second-meeting-fields hidden">
+        <label for="meetingPlace2">Второе место</label>
+        <input id="meetingPlace2" type="text" value="" placeholder="Например, у фонтана">
+
+        <label for="timeType2">Тип времени (2)</label>
+        <select id="timeType2">
+          <option value="registration">Время регистрации</option>
+          <option value="banquet" selected>Начало банкета</option>
+        </select>
+
+        <label for="meetingTime2">Время (2)</label>
+        <input id="meetingTime2" type="time" value="17:00">
+      </div>
+
+      <button id="generateBtn">Создать персональную ссылку ✨</button>
 
       <div id="result" class="result hidden">
         <div class="result-title">Персональная ссылка</div>
@@ -43,14 +80,18 @@
     </section>
 
     <section class="preview-wrap">
-      <div class="preview-label">Предпросмотр</div>
       <article class="card">
+        <div class="card-ornament top-left">🌸</div>
+        <div class="card-ornament top-right">🐱</div>
+        <div class="card-ornament bottom-left">🐾</div>
+        <div class="card-ornament bottom-right">🌺</div>
+
         <div class="card-top">МЫ ЖЕНИМСЯ</div>
-        <div class="rings">○</div>
-        <div class="invite">ДОРОГОЙ ГОСТЬ</div>
+        <div class="rings">💍</div>
         <h3 class="couple">АНДРЕЙ &amp; ВЕРОНИКА</h3>
+        <div class="invite">ДОРОГОЙ ГОСТЬ</div>
         <h2 id="previewName">Ваше имя</h2>
-        <div class="divider"></div>
+        <div class="divider">❀</div>
         <p class="intro">Мы будем счастливы разделить с вами<br>этот особенный день.</p>
 
         <div class="details">
@@ -62,13 +103,35 @@
             <span>МЕСТО</span>
             <strong id="previewVenue">Чаша, Золотой зал</strong>
           </div>
-          <div>
-            <span>МЕСТО ВСТРЕЧИ</span>
+          <div id="meetingBlock1">
+            <span id="meetingPlaceLabel">МЕСТО ВСТРЕЧИ</span>
             <strong id="previewMeetingPlace">У входа в Золотой зал</strong>
           </div>
-          <div>
-            <span>ВРЕМЯ ВСТРЕЧИ</span>
+          <div id="meetingBlock2">
+            <span id="meetingTimeLabel">ВРЕМЯ РЕГИСТРАЦИИ</span>
             <strong id="previewMeetingTime">16:00</strong>
+          </div>
+        </div>
+
+        <div id="secondMeetingPreview" class="second-meeting-preview hidden">
+          <p class="choice-hint">Вы можете выбрать удобный вариант 🌸</p>
+          <div class="details second-details">
+            <div>
+              <span>МЕСТО 1</span>
+              <strong id="previewMeetingPlaceOpt1">У входа в Золотой зал</strong>
+            </div>
+            <div>
+              <span id="previewTimeLabelOpt1">ВРЕМЯ 1</span>
+              <strong id="previewMeetingTimeOpt1">16:00</strong>
+            </div>
+            <div>
+              <span>МЕСТО 2</span>
+              <strong id="previewMeetingPlaceOpt2"></strong>
+            </div>
+            <div>
+              <span id="previewTimeLabelOpt2">ВРЕМЯ 2</span>
+              <strong id="previewMeetingTimeOpt2"></strong>
+            </div>
           </div>
         </div>
 
@@ -83,7 +146,18 @@
           <p id="countdownStatus"></p>
         </div>
 
-        <div class="card-bottom">С ЛЮБОВЬЮ · АНДРЕЙ &amp; ♥</div>
+        <div class="wishes">
+          <h4>Наши маленькие пожелания 🤍</h4>
+          <p>Самый ценный подарок для нас — ваше присутствие и этот счастливый день, который мы разделим вместе.</p>
+          <p>Если захотите порадовать нас, будем рады небольшому вкладу в нашу семейную копилку — пусть он станет частью нашей будущей семейной истории. 💌</p>
+          <p>А ещё у нас есть одна особенная идея:<br>
+          приходите, пожалуйста, с одним цветком 🌸<br>
+          Из цветов, подаренных нашими гостями, мы хотим собрать один большой и красивый букет, который будет напоминать нам об этом дне и каждом, кто разделил его с нами.</p>
+          <p>И небольшая просьба по дресс-коду:<br>
+          пожалуйста, оставьте красный, белый и чёрный цвета для других поводов — нам хочется, чтобы в этот день всё внимание было сосредоточено на нашей любви и праздничной атмосфере. ✨</p>
+          <p>Спасибо, что помогаете сделать наш день именно таким, каким мы его мечтаем увидеть!</p>
+          <p class="wishes-sign">Андрей &amp; Вероника ❤️</p>
+        </div>
       </article>
     </section>
   </main>
