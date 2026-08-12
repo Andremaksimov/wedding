@@ -178,20 +178,36 @@ document.getElementById('copyBtn').addEventListener('click', async () => {
   }
 });
 
+/** Декодирует значение, в т.ч. при двойном кодировании (часто бывает после шаринга в мессенджерах) */
+function safeDecode(value) {
+  if (value == null || value === '') return value;
+  let str = String(value);
+  try {
+    let prev;
+    do {
+      prev = str;
+      str = decodeURIComponent(str.replace(/\+/g, ' '));
+    } while (str !== prev && /%[0-9A-Fa-f]{2}/.test(str));
+  } catch (_) {
+    // оставляем как есть, если строка битая
+  }
+  return str;
+}
+
 const params = new URLSearchParams(location.search);
 if (params.has('guest')) {
-  guestName.value = params.get('guest') || '';
-  weddingDate.value = params.get('date') || '2026-09-05';
-  venue.value = params.get('venue') || 'Чаша, Золотой зал';
-  meetingPlace.value = params.get('meetingPlace') || 'У входа в Золотой зал';
-  meetingTime.value = params.get('meetingTime') || '16:00';
-  timeType.value = params.get('timeType') || 'registration';
+  guestName.value = safeDecode(params.get('guest')) || '';
+  weddingDate.value = safeDecode(params.get('date')) || '2026-09-05';
+  venue.value = safeDecode(params.get('venue')) || 'Чаша, Золотой зал';
+  meetingPlace.value = safeDecode(params.get('meetingPlace')) || 'У входа в Золотой зал';
+  meetingTime.value = safeDecode(params.get('meetingTime')) || '16:00';
+  timeType.value = safeDecode(params.get('timeType')) || 'registration';
 
   if (params.get('second') === '1') {
     enableSecondMeeting.checked = true;
-    meetingPlace2.value = params.get('meetingPlace2') || '';
-    meetingTime2.value = params.get('meetingTime2') || '';
-    timeType2.value = params.get('timeType2') || 'banquet';
+    meetingPlace2.value = safeDecode(params.get('meetingPlace2')) || '';
+    meetingTime2.value = safeDecode(params.get('meetingTime2')) || '';
+    timeType2.value = safeDecode(params.get('timeType2')) || 'banquet';
   }
 
   updateSecondFieldsVisibility();

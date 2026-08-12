@@ -339,13 +339,6 @@ button:hover {
   margin: -16px 0 28px;
 }
 
-.choice-hint {
-  font-size: 13px;
-  color: var(--muted);
-  margin: 0 0 12px;
-  letter-spacing: 0.02em;
-}
-
 .second-details {
   margin: 0;
 }
