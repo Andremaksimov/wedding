@@ -62,7 +62,7 @@ function updateSecondFieldsVisibility() {
 function updatePreview() {
   previewName.textContent = guestName.value.trim() || 'Ваше имя';
   previewDate.textContent = formatDate(weddingDate.value) || '05.09.2026';
-  previewVenue.textContent = venue.value.trim() || 'Чаша, Золотой зал';
+  if (previewVenue && venue) previewVenue.textContent = venue.value.trim() || 'Чаша, Золотой зал';
 
   const place1 = meetingPlace.value.trim() || 'У входа в Золотой зал';
   const time1 = meetingTime.value || '16:00';
@@ -91,7 +91,7 @@ function updatePreview() {
   }
 }
 
-[guestName, weddingDate, venue, meetingPlace, meetingTime, meetingPlace2, meetingTime2].forEach(el => {
+[guestName, weddingDate, venue, meetingPlace, meetingTime, meetingPlace2, meetingTime2].filter(Boolean).forEach(el => {
   el.addEventListener('input', updatePreview);
   el.addEventListener('change', updatePreview);
 });
@@ -144,7 +144,7 @@ function buildPersonalLink() {
   const params = new URLSearchParams({
     guest: name,
     date: weddingDate.value,
-    venue: venue.value.trim(),
+    venue: venue ? venue.value.trim() : '',
     meetingPlace: meetingPlace.value.trim(),
     meetingTime: meetingTime.value,
     timeType: timeType.value
@@ -198,7 +198,7 @@ const params = new URLSearchParams(location.search);
 if (params.has('guest')) {
   guestName.value = safeDecode(params.get('guest')) || '';
   weddingDate.value = safeDecode(params.get('date')) || '2026-09-05';
-  venue.value = safeDecode(params.get('venue')) || 'Чаша, Золотой зал';
+  if (venue) venue.value = safeDecode(params.get('venue')) || '';
   meetingPlace.value = safeDecode(params.get('meetingPlace')) || 'У входа в Золотой зал';
   meetingTime.value = safeDecode(params.get('meetingTime')) || '16:00';
   timeType.value = safeDecode(params.get('timeType')) || 'registration';

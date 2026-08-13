@@ -320,6 +320,11 @@ button:hover {
   background: rgba(255, 245, 247, 0.4);
 }
 
+.details > div.date-only {
+  grid-column: 1 / -1;
+  text-align: center;
+}
+
 .details span {
   display: block;
   color: var(--muted);
